@@ -12,4 +12,9 @@ class Post extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function likes(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    {
+        return $this->belongsToMany(User::class, 'likes')->using(Like::class)->withTimestamps()->withPivot('reaction');
+    }
 }
