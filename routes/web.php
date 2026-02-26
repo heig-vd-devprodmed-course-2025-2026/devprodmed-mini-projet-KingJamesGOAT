@@ -7,6 +7,7 @@ Route::get('/', function () {
 });
 
 use App\Models\User;
+use App\Models\Post;
 
 Route::get('/test-user', function () {
     $user = new User();
@@ -19,4 +20,29 @@ Route::get('/test-user', function () {
     $user->save();
 
     return $user;
+});
+
+Route::get('/test-post-1', function () {
+    $user = User::first();
+
+    $post = new Post();
+    $post->title = 'Mon premier post';
+    $post->content = 'Ceci est le contenu de mon premier post.';
+
+    $user->posts()->save($post);
+
+    return $post;
+});
+
+Route::get('/test-post-2', function () {
+    $user = User::find(1);
+
+    $post = new Post();
+    $post->content = 'Ceci est le contenu de mon deuxieme post.';
+
+    $post->user()->associate($user);
+
+    $post->save();
+
+    return $post;
 });
