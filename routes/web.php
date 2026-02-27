@@ -2,9 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
 
 use App\Models\User;
 use App\Models\Post;
@@ -48,7 +46,10 @@ Route::get('/test-post-2', function () {
 });
 
 Route::get('/test-like', function () {
+    /** @var User $user */
     $user = User::find(1);
+
+    /** @var Post $post */
     $post = Post::find(2);
 
     $user->likes()->attach($post->id, ['reaction' => 'love']);
