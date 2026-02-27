@@ -15,8 +15,8 @@ Route::get('/', function () {
 });
 
 Route::get('/profile', function () {
-    // Pour le moment on fixe sur l'utilisateur janedoe pour tester l'affichage
-    $user = User::where('username', 'janedoe')->first();
+    // Pour le moment on fixe sur le premier utilisateur pour tester l'affichage
+    $user = User::first();
     $posts = Post::where('user_id', $user->id)
         ->orderBy('created_at', 'desc')
         ->with(['user', 'likes'])
