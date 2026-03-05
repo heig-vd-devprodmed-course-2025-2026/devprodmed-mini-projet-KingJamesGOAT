@@ -22,5 +22,6 @@ return [
     'posts' => [
         'no_posts' => 'Aucun post à afficher.',
         'likes_count' => '{0} Aucun like|{1} :count like|[2,*] :count likes',
+        'view_post' => 'Voir le post',
     ],
 ];
