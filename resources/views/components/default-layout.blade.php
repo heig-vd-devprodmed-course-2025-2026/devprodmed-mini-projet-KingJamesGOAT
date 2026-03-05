@@ -21,7 +21,7 @@
                         {{ config('app.name') }}
                     </a>
                     <a
-                        href="{{ url('/profile') }}"
+                        href="{{ url('/@' . (\App\Models\User::first()->username ?? '')) }}"
                         class="block hover:opacity-80 transition"
                     >
                         <img
