@@ -15,6 +15,8 @@
         {{ __('ui.home.introduction', ['app_name' => config('app.name')]) }}
     </p>
 
+    <x-post-create />
+
     <div class="mt-8 space-y-6">
         @foreach ($posts as $post)
             <x-post-card :post="$post" />

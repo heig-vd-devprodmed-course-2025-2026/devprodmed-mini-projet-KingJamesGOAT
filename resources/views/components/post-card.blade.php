@@ -20,14 +20,14 @@
         </div>
         @if ($post->title)
             <a href="{{ url('/posts/' . $post->id) }}">
-                <h2 class="text-xl font-bold text-gray-900 dark:text-white">
+                <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-2">
                     {{ $post->title }}
                 </h2>
             </a>
         @endif
     </header>
 
-<div class="mb-4">
+<div class="mb-6">
     <a href="{{ url('/posts/' . $post->id) }}">
         <p class="text-gray-700 dark:text-gray-300">
             {{ $post->content }}
@@ -37,9 +37,12 @@
 
 <footer class="pt-4 border-t border-gray-200 dark:border-gray-700">
     <div class="flex items-center justify-between text-sm text-gray-600 dark:text-gray-400">
-        <a href="{{ url('/posts/' . $post->id) }}" class="font-semibold">
-            {{ trans_choice('ui.posts.likes_count', count($post->likes)) }}
-        </a>
+        <form action="{{ url('/posts/' . $post->id . '/like') }}" method="POST">
+            @csrf
+            <button type="submit" class="inline-flex items-center gap-3 px-6 py-3 bg-teal-50 dark:bg-purple-900/40 border-2 border-teal-500 dark:border-purple-500 text-teal-700 dark:text-purple-300 font-bold text-sm rounded-full hover:bg-teal-100 dark:hover:bg-purple-900/60 transition cursor-pointer">
+                ♥ {{ trans_choice('ui.posts.likes_count', count($post->likes)) }}
+            </button>
+        </form>
         <a href="{{ url('/posts/' . $post->id) }}"
             class="px-4 py-2 bg-teal-600 dark:bg-purple-900 text-white rounded-md hover:bg-teal-700 dark:hover:bg-purple-800">
             {{ __('ui.posts.view_post') }}
