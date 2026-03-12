@@ -7,11 +7,11 @@
         {{ __('ui.home.description') }}
     </x-slot>
 
-    <h1 class="text-2xl font-bold dark:text-white">
+    <h1 class="text-3xl font-extrabold text-center dark:text-white">
         {{ config('app.name') }}
     </h1>
 
-    <p class="mt-4 dark:text-gray-300">
+    <p class="mt-6 mb-20 text-center text-lg dark:text-gray-300">
         {{ __('ui.home.introduction', ['app_name' => config('app.name')]) }}
     </p>
 
