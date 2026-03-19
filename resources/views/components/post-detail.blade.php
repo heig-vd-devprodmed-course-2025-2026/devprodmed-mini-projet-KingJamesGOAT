@@ -33,12 +33,19 @@
 
     <footer class="pt-6 border-t border-gray-200 dark:border-gray-700">
         <div class="flex items-center justify-between text-gray-600 dark:text-gray-400">
+            @auth
             <form action="{{ url('/posts/' . $post->id . '/like') }}" method="POST">
                 @csrf
                 <button type="submit" class="inline-flex items-center gap-3 px-8 py-4 bg-teal-50 dark:bg-purple-900/40 border-2 border-teal-500 dark:border-purple-500 text-teal-700 dark:text-purple-300 font-bold text-xl rounded-full hover:bg-teal-100 dark:hover:bg-purple-900/60 transition cursor-pointer">
                     ♥ {{ trans_choice('ui.posts.likes_count', count($post->likes)) }}
                 </button>
             </form>
+            @else
+            <div class="inline-flex items-center gap-3 px-8 py-4 bg-teal-50 dark:bg-purple-900/40 border-2 border-teal-500 dark:border-purple-500 text-teal-700 dark:text-purple-300 font-bold text-xl rounded-full">
+                ♥ {{ trans_choice('ui.posts.likes_count', count($post->likes)) }}
+            </div>
+            @endauth
+            @can('update', $post)
             <div class="flex gap-3">
                 <a href="{{ url('/posts/' . $post->id . '/edit') }}" 
                    class="px-4 py-2 bg-blue-600 dark:bg-blue-800 text-white font-semibold rounded-md hover:bg-blue-700 transition">
@@ -52,6 +59,7 @@
                     </button>
                 </form>
             </div>
+            @endcan
         </div>
     </footer>
 </article>

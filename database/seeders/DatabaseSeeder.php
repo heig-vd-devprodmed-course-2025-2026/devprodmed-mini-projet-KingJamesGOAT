@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use App\Models\Post;
 use App\Models\Like;
@@ -22,6 +23,7 @@ class DatabaseSeeder extends Seeder
             $user1->last_name = 'Smith';
             $user1->username = 'alicesmith';
             $user1->email = 'alice@example.com';
+            $user1->password = Hash::make('password1234');
             $user1->save();
 
             $user2 = new User();
@@ -29,6 +31,7 @@ class DatabaseSeeder extends Seeder
             $user2->last_name = 'Jones';
             $user2->username = 'bobjones';
             $user2->email = 'bob@example.com';
+            $user2->password = Hash::make('password1234');
             $user2->save();
 
             // Créer un post pour le premier utilisateur

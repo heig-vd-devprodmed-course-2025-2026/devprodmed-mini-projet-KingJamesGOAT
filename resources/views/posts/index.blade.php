@@ -15,7 +15,9 @@
         {{ __('ui.home.introduction', ['app_name' => config('app.name')]) }}
     </p>
 
-    <x-post-create />
+    @can('create', App\Models\Post::class)
+        <x-post-create />
+    @endcan
 
     <div class="mt-8 space-y-6">
         @foreach ($posts as $post)

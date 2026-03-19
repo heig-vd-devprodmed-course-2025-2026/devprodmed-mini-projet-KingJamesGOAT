@@ -18,13 +18,13 @@ it('charge la page a propos avec succes', function () {
 });
 
 it('charge un profil utilisateur existant', function () {
-    $user = User::forceCreate(['first_name' => 'Test', 'last_name' => 'User', 'username' => 'testuser1', 'email' => 'test1@test.com']);
+    $user = User::forceCreate(['first_name' => 'Test', 'last_name' => 'User', 'username' => 'testuser1', 'email' => 'test1@test.com', 'password' => 'password']);
     $response = get('/@' . $user->username);
     $response->assertStatus(200);
 });
 
 it('charge un post existant', function () {
-    $user = User::forceCreate(['first_name' => 'Test', 'last_name' => 'User', 'username' => 'testuser2', 'email' => 'test2@test.com']);
+    $user = User::forceCreate(['first_name' => 'Test', 'last_name' => 'User', 'username' => 'testuser2', 'email' => 'test2@test.com', 'password' => 'password']);
     $post = Post::forceCreate(['title' => 'Test', 'content' => 'Test', 'user_id' => $user->id]);
     $response = get('/posts/' . $post->id);
     $response->assertStatus(200);

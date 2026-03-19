@@ -1,18 +1,7 @@
-<x-default-layout>
-    <x-slot:title>
-        Page non trouvee
-    </x-slot>
-
-    <x-slot:description>
-        La page que vous cherchez n'existe pas.
-    </x-slot>
-
-    <div class="flex flex-col items-center justify-center py-16">
-        <h1 class="text-6xl font-extrabold text-teal-600 dark:text-purple-500 mb-4">404</h1>
-        <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-6">Page non trouvee</h2>
-        <p class="text-lg text-gray-600 dark:text-gray-400 mb-8 text-center">Oups ! La page que vous recherchez semble avoir disparu ou n'a jamais existe.</p>
-        <a href="{{ url('/') }}" class="px-6 py-3 bg-teal-600 dark:bg-purple-900 text-white font-semibold rounded-lg hover:bg-teal-700 dark:hover:bg-purple-800 transition">
-            Retour a l'accueil
-        </a>
+<x-default-layout title="404 - Non trouvé">
+    <div class="text-center py-20">
+        <h1 class="text-6xl font-bold text-gray-900 dark:text-gray-100">404</h1>
+        <p class="mt-4 text-xl text-gray-600 dark:text-gray-400">Cette page n'existe pas.</p>
+        <a href="{{ url('/') }}" class="mt-6 inline-block text-teal-600 dark:text-teal-400 hover:underline">Retour à l'accueil</a>
     </div>
 </x-default-layout>

@@ -1,27 +1,34 @@
 <?php
-declare(strict_types=1);
 
 return [
+    'register' => 'S\'inscrire',
+    'login' => 'Se connecter',
+    'username' => 'Nom d\'utilisateur',
+    'email' => 'Adresse e-mail',
+    'first_name' => 'Prénom',
+    'last_name' => 'Nom de famille',
+    'password' => 'Mot de passe',
+    'password_confirmation' => 'Confirmer le mot de passe',
+    'remember_me' => 'Se souvenir de moi',
+    'logout' => 'Se déconnecter',
+    'posts' => [
+        'likes_count' => '{0} 0 J\'aime|{1} 1 J\'aime|[2,*] :count J\'aimes',
+        'view_post' => 'Voir la publication',
+    ],
     'home' => [
         'title' => 'Accueil',
-        'description' => "Page d'accueil du réseau social.",
-        'introduction' => 'Bienvenue sur :app_name !',
+        'description' => 'Découvrez les dernières publications.',
+        'introduction' => 'Bienvenue sur :app_name, la plateforme d\'échange !',
     ],
     'profile' => [
-        'title' => 'Profil de :username',
-        'description' => 'Page de profil pour :username.',
-        'number_of_posts' => '{0} Aucune publication|{1} :count publication|[2,*] :count publications',
+        'title' => 'Profil',
+        'description' => 'Profil de :username',
     ],
     'about' => [
         'title' => 'À propos',
-        'description' => 'Page à propos de notre réseau social.',
-        'introduction' => 'Ce réseau social a été créé pour permettre aux utilisateur.trices de partager leurs pensées et leurs idées avec le monde entier.',
-        'disclaimer' => "Ce réseau social est un projet réalisé dans le cadre d'un cours de la HEIG VD, Suisse.",
-        'copyright' => '© :year Tous droits réservés.',
-    ],
-    'posts' => [
-        'no_posts' => 'Aucun post à afficher.',
-        'likes_count' => '{0} Aucun like|{1} :count like|[2,*] :count likes',
-        'view_post' => 'Voir le post',
+        'description' => 'Découvrez les détails de notre application.',
+        'introduction' => 'Voici notre page d\'information.',
+        'disclaimer' => 'Ceci est un projet académique.',
+        'copyright' => '© :year Tous droits réservés',
     ],
 ];
