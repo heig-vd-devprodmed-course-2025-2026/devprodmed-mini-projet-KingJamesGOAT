@@ -5,7 +5,7 @@
 
     <div class="bg-white dark:bg-slate-800 rounded-xl shadow-lg p-10 mt-12 mb-12 mx-auto max-w-xl">
         <h2 class="text-2xl font-bold dark:text-white mb-8 text-center">Modifier le post</h2>
-        <form action="{{ url('/posts/' . $post->id) }}" method="POST" class="space-y-6">
+        <form action="{{ route('posts.update', $post->id) }}" method="POST" class="space-y-6">
             @csrf
             @method('PUT')
             <div class="max-w-lg mx-auto">
@@ -25,7 +25,7 @@
             </div>
             
             <div class="flex items-center justify-center gap-4 pt-4">
-                <a href="{{ url('/posts/' . $post->id) }}" class="px-4 py-2 bg-gray-500 text-white rounded-md hover:bg-gray-600 transition">
+                <a href="{{ route('posts.show', $post->id) }}" class="px-4 py-2 bg-gray-500 text-white rounded-md hover:bg-gray-600 transition">
                     Annuler
                 </a>
                 <button type="submit" 

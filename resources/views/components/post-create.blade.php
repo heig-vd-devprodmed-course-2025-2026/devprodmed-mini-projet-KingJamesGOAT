@@ -1,6 +1,6 @@
 <div class="bg-white dark:bg-slate-800 rounded-xl shadow-lg p-10 mb-12 mx-auto max-w-xl">
     <h2 class="text-2xl font-bold dark:text-white mb-8 text-center">Créer une publication</h2>
-    <form action="{{ url('/posts') }}" method="POST" class="space-y-6">
+    <form action="{{ route('posts.store') }}" method="POST" class="space-y-6">
         @csrf
         <div class="max-w-md mx-auto">
             <input type="text" name="title" placeholder="Titre du post (optionnel)" 

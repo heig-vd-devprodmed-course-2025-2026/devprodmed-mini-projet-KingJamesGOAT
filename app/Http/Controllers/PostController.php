@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers;
 
 use App\Models\Post;
@@ -9,7 +10,7 @@ use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
 use Illuminate\Support\Facades\Auth;
 
-class PostController extends Controller
+class PostController
 {
     public function index(): View
     {
@@ -17,17 +18,9 @@ class PostController extends Controller
         return view('posts.index', ['posts' => $posts]);
     }
 
-    public function show(string $id): View
+    public function create(): View
     {
-        $post = Post::with(['user', 'likes'])->findOrFail($id);
-        
-        $reaction = null;
-        if (Auth::check()) {
-            $like = $post->likes->where('user_id', Auth::id())->first();
-            $reaction = $like ? $like->pivot->reaction : null;
-        }
-        
-        return view('posts.show', ['post' => $post, 'reaction' => $reaction]);
+        return view('posts.create');
     }
 
     public function store(StorePostRequest $request)
@@ -39,8 +32,21 @@ class PostController extends Controller
 
         Post::create($validated);
 
-        // Redirection vers l'accueil avec rechargement de la page
-        return redirect('/');
+        // Redirection vers l'accueil
+        return redirect()->route('posts.index');
+    }
+
+    public function show(string $id): View
+    {
+        $post = Post::with(['user', 'likes'])->findOrFail($id);
+        
+        $reaction = null;
+        if (Auth::check()) {
+            $like = $post->likes->where('user_id', Auth::id())->first();
+            $reaction = $like ? $like->pivot->reaction ?? null : null;
+        }
+        
+        return view('posts.show', ['post' => $post, 'reaction' => $reaction]);
     }
 
     public function edit(string $id)
@@ -60,7 +66,7 @@ class PostController extends Controller
 
         $post->update($validated);
 
-        return redirect('/posts/' . $post->id);
+        return redirect()->route('posts.show', $post->id);
     }
 
     public function destroy(string $id)
@@ -69,7 +75,6 @@ class PostController extends Controller
         Gate::authorize('delete', $post);
         $post->delete();
 
-        return redirect('/');
+        return redirect()->route('posts.index');
     }
-
 }

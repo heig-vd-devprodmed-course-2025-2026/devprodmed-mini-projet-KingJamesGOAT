@@ -17,13 +17,13 @@
         <header class="bg-teal-600 text-white dark:bg-slate-800">
             <nav class="container mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="h-16 flex items-center justify-between">
-                    <a href="{{ url('/') }}" class="block hover:opacity-80 transition">
+                    <a href="{{ route('posts.index') }}" class="block hover:opacity-80 transition">
                         {{ config('app.name') }}
                     </a>
                     <div class="flex items-center space-x-4">
                         @auth
                             <a
-                                href="{{ url('/@' . Auth::user()->username) }}"
+                                href="{{ route('users.show', Auth::user()->username) }}"
                                 class="block hover:opacity-80 transition"
                             >
                                 <img
@@ -68,7 +68,7 @@
                         {{ __('ui.about.copyright', ['year' => date('Y')]) }}
                     </p>
                     <a
-                        href="{{ url('/about') }}"
+                        href="{{ route('about') }}"
                         class="block hover:opacity-80 transition"
                     >
                         {{ __('ui.about.title') }}
