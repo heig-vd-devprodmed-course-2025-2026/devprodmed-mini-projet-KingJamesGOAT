@@ -3,8 +3,7 @@
 Ce depot contient le mini projet a realiser dans le cadre du cours Developpement de produit media.
 
 ## Auteur
-
-[YOUR FIRST AND LAST NAME HERE]
+Steve Benjamin
 
 ## Objectif du projet
 
