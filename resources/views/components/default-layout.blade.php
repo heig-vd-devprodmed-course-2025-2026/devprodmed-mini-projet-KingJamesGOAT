@@ -22,26 +22,32 @@
                     </a>
                     <div class="flex items-center space-x-4">
                         @auth
-                            <a
-                                href="{{ route('favorites.index') }}"
-                                class="block hover:opacity-80 transition font-semibold"
-                            >
-                                Mes Études
-                            </a>
-                            <a
-                                href="{{ route('users.show', Auth::user()->username) }}"
-                                class="block hover:opacity-80 transition"
-                            >
-                                <img
-                                    src="/icons/profile.svg"
-                                    alt="{{ __('ui.profile.title') }}"
-                                    class="h-8 w-8 rounded-full inline-block"
-                                />
-                            </a>
-                            <form method="POST" action="{{ route('logout') }}" class="inline m-0">
-                                @csrf
-                                <button type="submit" class="hover:underline text-sm">{{ __('ui.logout') }}</button>
-                            </form>
+                            <div class="flex items-center gap-8">
+                                <a
+                                    href="{{ route('favorites.index') }}"
+                                    class="block hover:text-teal-200 dark:hover:text-purple-300 transition font-bold"
+                                >
+                                    Mes Études
+                                </a>
+                                
+                                <div class="flex items-center gap-4 border-l pl-6 border-teal-500 dark:border-slate-700">
+                                    <a
+                                        href="{{ route('users.show', Auth::user()->username) }}"
+                                        class="block hover:opacity-80 transition"
+                                        title="{{ __('ui.profile.title') }}"
+                                    >
+                                        <img
+                                            src="/icons/profile.svg"
+                                            alt="{{ __('ui.profile.title') }}"
+                                            class="h-9 w-9 rounded-full inline-block bg-teal-700 p-1"
+                                        />
+                                    </a>
+                                    <form method="POST" action="{{ route('logout') }}" class="m-0">
+                                        @csrf
+                                        <button type="submit" class="hover:text-teal-200 dark:hover:text-purple-300 font-semibold text-sm transition">{{ __('ui.logout') }}</button>
+                                    </form>
+                                </div>
+                            </div>
                         @else
                             <div class="flex items-center space-x-4">
                                 <a href="{{ route('login') }}" class="px-4 py-2 text-sm font-semibold rounded-lg border border-teal-200/30 hover:bg-teal-700 dark:border-slate-600 dark:hover:bg-slate-700 transition">{{ __('ui.login') }}</a>

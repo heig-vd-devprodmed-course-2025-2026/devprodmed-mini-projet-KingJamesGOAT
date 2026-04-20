@@ -23,6 +23,7 @@ return [
     'profile' => [
         'title' => 'Profil',
         'description' => 'Profil de :username',
+        'number_of_posts' => 'Nombre de publications :',
     ],
     'about' => [
         'title' => 'À propos',
