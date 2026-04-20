@@ -41,7 +41,8 @@
     
     <!-- Si une chaîne FEN est présente, on affiche l'image de l'échiquier -->
     @if ($post->fen_string)
-        <img src="https://backscattering.de/chess/fen_image.php?fen={{ urlencode($post->fen_string) }}" 
+        {{-- Utilisation de l'API Lichess pour plus de fiabilité et de résilience --}}
+        <img src="https://lichess1.org/export/fen.gif?fen={{ urlencode($post->fen_string) }}" 
              alt="Position d'échecs" 
              class="mx-auto rounded-lg shadow-sm mt-4 mb-4 max-w-sm w-full">
     @endif
