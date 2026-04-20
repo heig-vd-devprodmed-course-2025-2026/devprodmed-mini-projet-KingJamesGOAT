@@ -30,4 +30,10 @@ class Post extends Model
     {
         return $this->belongsToMany(User::class, 'likes')->using(Like::class)->withTimestamps()->withPivot('reaction');
     }
+
+    // Relation Plusieurs-à-Plusieurs : Une publication peut être mise en favoris par plusieurs utilisateurs
+    public function favoritedBy(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    {
+        return $this->belongsToMany(User::class, 'favorites')->withTimestamps();
+    }
 }

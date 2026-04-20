@@ -23,6 +23,11 @@ Route::resource('posts', PostController::class)->except(['index', 'show'])->midd
 // Likes (Nested Resource)
 Route::resource('posts.likes', LikeController::class)->only(['store', 'destroy'])->middleware('auth');
 
+// Favorites
+Route::get('/favorites', [\App\Http\Controllers\FavoriteController::class, 'index'])->name('favorites.index')->middleware('auth');
+Route::post('/posts/{post}/favorites', [\App\Http\Controllers\FavoriteController::class, 'store'])->name('favorites.store')->middleware('auth');
+Route::delete('/posts/{post}/favorites', [\App\Http\Controllers\FavoriteController::class, 'destroy'])->name('favorites.destroy')->middleware('auth');
+
 // Users
 Route::resource('users', UserController::class)->only(['show'])->parameters(['users' => 'user']);
 

@@ -38,29 +38,50 @@
 
     <footer class="pt-6 border-t border-gray-200 dark:border-gray-700">
         <div class="flex items-center justify-between text-gray-600 dark:text-gray-400">
-            @auth
-            @php $userLike = $post->likes->where('user_id', Auth::id())->first(); @endphp
-            @if ($userLike)
-            <form action="{{ route('posts.likes.destroy', ['post' => $post->id, 'like' => $userLike->id]) }}" method="POST">
-                @csrf
-                @method('DELETE')
-                <button type="submit" class="inline-flex items-center gap-3 px-8 py-4 bg-teal-50 dark:bg-purple-900/40 border-2 border-teal-500 dark:border-purple-500 text-teal-700 dark:text-purple-300 font-bold text-xl rounded-full hover:bg-teal-100 dark:hover:bg-purple-900/60 transition cursor-pointer">
+            <div class="flex items-center gap-3">
+                @auth
+                @php $userLike = $post->likes->where('user_id', Auth::id())->first(); @endphp
+                @if ($userLike)
+                <form action="{{ route('posts.likes.destroy', ['post' => $post->id, 'like' => $userLike->id]) }}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="inline-flex items-center gap-3 px-8 py-4 bg-teal-50 dark:bg-purple-900/40 border-2 border-teal-500 dark:border-purple-500 text-teal-700 dark:text-purple-300 font-bold text-xl rounded-full hover:bg-teal-100 dark:hover:bg-purple-900/60 transition cursor-pointer">
+                        ♥ {{ trans_choice('ui.posts.likes_count', count($post->likes)) }}
+                    </button>
+                </form>
+                @else
+                <form action="{{ route('posts.likes.store', $post->id) }}" method="POST">
+                    @csrf
+                    <button type="submit" class="inline-flex items-center gap-3 px-8 py-4 bg-teal-50 dark:bg-purple-900/40 border-2 border-teal-500 dark:border-purple-500 text-teal-700 dark:text-purple-300 font-bold text-xl rounded-full hover:bg-teal-100 dark:hover:bg-purple-900/60 transition cursor-pointer">
+                        ♥ {{ trans_choice('ui.posts.likes_count', count($post->likes)) }}
+                    </button>
+                </form>
+                @endif
+
+                <!-- Formulaire de favoris -->
+                @if (Auth::user()->favorites->contains($post->id))
+                <form action="{{ route('favorites.destroy', $post->id) }}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="inline-flex items-center gap-3 px-8 py-4 bg-yellow-50 dark:bg-yellow-900/40 border-2 border-yellow-500 text-yellow-700 dark:text-yellow-400 font-bold text-xl rounded-full hover:bg-yellow-100 dark:hover:bg-yellow-900/60 transition cursor-pointer">
+                        ★ Retirer des favoris
+                    </button>
+                </form>
+                @else
+                <form action="{{ route('favorites.store', $post->id) }}" method="POST">
+                    @csrf
+                    <button type="submit" class="inline-flex items-center gap-3 px-8 py-4 bg-gray-50 dark:bg-gray-800 border-2 border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 font-bold text-xl rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition cursor-pointer">
+                        ☆ Sauvegarder l'étude
+                    </button>
+                </form>
+                @endif
+
+                @else
+                <div class="inline-flex items-center gap-3 px-8 py-4 bg-teal-50 dark:bg-purple-900/40 border-2 border-teal-500 dark:border-purple-500 text-teal-700 dark:text-purple-300 font-bold text-xl rounded-full">
                     ♥ {{ trans_choice('ui.posts.likes_count', count($post->likes)) }}
-                </button>
-            </form>
-            @else
-            <form action="{{ route('posts.likes.store', $post->id) }}" method="POST">
-                @csrf
-                <button type="submit" class="inline-flex items-center gap-3 px-8 py-4 bg-teal-50 dark:bg-purple-900/40 border-2 border-teal-500 dark:border-purple-500 text-teal-700 dark:text-purple-300 font-bold text-xl rounded-full hover:bg-teal-100 dark:hover:bg-purple-900/60 transition cursor-pointer">
-                    ♥ {{ trans_choice('ui.posts.likes_count', count($post->likes)) }}
-                </button>
-            </form>
-            @endif
-            @else
-            <div class="inline-flex items-center gap-3 px-8 py-4 bg-teal-50 dark:bg-purple-900/40 border-2 border-teal-500 dark:border-purple-500 text-teal-700 dark:text-purple-300 font-bold text-xl rounded-full">
-                ♥ {{ trans_choice('ui.posts.likes_count', count($post->likes)) }}
+                </div>
+                @endauth
             </div>
-            @endauth
             @can('update', $post)
             <div class="flex gap-3">
                 <a href="{{ route('posts.edit', $post->id) }}"

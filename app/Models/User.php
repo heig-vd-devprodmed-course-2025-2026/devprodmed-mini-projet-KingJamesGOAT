@@ -16,4 +16,10 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Post::class, 'likes')->using(Like::class)->withTimestamps()->withPivot('reaction');
     }
+
+    // Relation Plusieurs-à-Plusieurs : Un utilisateur peut mettre plusieurs publications en favoris
+    public function favorites(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    {
+        return $this->belongsToMany(Post::class, 'favorites')->withTimestamps();
+    }
 }

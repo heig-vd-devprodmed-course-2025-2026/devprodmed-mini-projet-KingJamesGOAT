@@ -23,6 +23,12 @@
                     <div class="flex items-center space-x-4">
                         @auth
                             <a
+                                href="{{ route('favorites.index') }}"
+                                class="block hover:opacity-80 transition font-semibold"
+                            >
+                                Mes Études
+                            </a>
+                            <a
                                 href="{{ route('users.show', Auth::user()->username) }}"
                                 class="block hover:opacity-80 transition"
                             >
