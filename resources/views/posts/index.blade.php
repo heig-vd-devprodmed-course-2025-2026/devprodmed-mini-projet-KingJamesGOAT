@@ -16,7 +16,7 @@
     </p>
 
     @can('create', App\Models\Post::class)
-        <x-post-create />
+        <x-post-create :categories="$categories" />
     @endcan
 
     <div class="mt-8 space-y-6">

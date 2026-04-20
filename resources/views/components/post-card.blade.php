@@ -25,6 +25,11 @@
                 </h2>
             </a>
         @endif
+
+        <!-- Affichage de la catégorie en texte brut -->
+        <p class="text-sm text-gray-500 dark:text-gray-400 font-semibold mb-2">
+            Catégorie : {{ $post->category->name }}
+        </p>
     </header>
 
 <div class="mb-6">

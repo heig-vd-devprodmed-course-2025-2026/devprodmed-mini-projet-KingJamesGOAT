@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 use Illuminate\Support\Facades\Gate;
@@ -12,15 +13,28 @@ use Illuminate\Support\Facades\Auth;
 
 class PostController
 {
-    public function index(): View
+    public function index(Request $request): View
     {
-        $posts = Post::orderBy('created_at', 'desc')->with(['user', 'likes'])->get();
-        return view('posts.index', ['posts' => $posts]);
+        // On inclut la relation 'category' pour éviter le problème N+1
+        $query = Post::orderBy('created_at', 'desc')->with(['user', 'likes', 'category']);
+
+        // Filtrage des publications si un category_id est présent dans l'URL (?category_id=x)
+        if ($request->has('category_id')) {
+            $query->where('category_id', $request->query('category_id'));
+        }
+
+        $posts = $query->get();
+        // On charge les catégories pour les passer à la vue (utiles pour le formulaire de création)
+        $categories = Category::all();
+
+        return view('posts.index', ['posts' => $posts, 'categories' => $categories]);
     }
 
     public function create(): View
     {
-        return view('posts.create');
+        // On transmet la liste des catégories à la vue de création
+        $categories = Category::all();
+        return view('posts.create', ['categories' => $categories]);
     }
 
     public function store(StorePostRequest $request)
@@ -38,7 +52,8 @@ class PostController
 
     public function show(string $id): View
     {
-        $post = Post::with(['user', 'likes'])->findOrFail($id);
+        // On charge aussi la catégorie pour l'affichage
+        $post = Post::with(['user', 'likes', 'category'])->findOrFail($id);
         
         $reaction = null;
         if (Auth::check()) {
@@ -53,7 +68,9 @@ class PostController
     {
         $post = Post::findOrFail($id);
         Gate::authorize('update', $post);
-        return view('edit-post', ['post' => $post]);
+        // On récupère les catégories pour le formulaire d'édition
+        $categories = Category::all();
+        return view('edit-post', ['post' => $post, 'categories' => $categories]);
     }
 
     public function update(UpdatePostRequest $request, string $id)

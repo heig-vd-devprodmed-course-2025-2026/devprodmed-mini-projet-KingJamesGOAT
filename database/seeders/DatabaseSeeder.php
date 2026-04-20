@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use App\Models\Post;
 use App\Models\Like;
+use App\Models\Category;
 
 class DatabaseSeeder extends Seeder
 {
@@ -17,6 +18,12 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         DB::transaction(function () {
+            // Création des catégories sur le thème des échecs
+            $catOuverture = Category::create(['name' => 'Ouverture']);
+            Category::create(['name' => 'Milieu de jeu']);
+            Category::create(['name' => 'Finale']);
+            Category::create(['name' => 'Tactique']);
+
             // Créer deux utilisateurs
             $user1 = new User();
             $user1->first_name = 'Alice';
@@ -38,6 +45,7 @@ class DatabaseSeeder extends Seeder
             $post = new Post();
             $post->title = 'Hello World';
             $post->content = 'Ceci est le premier post généré par le seeder.';
+            $post->category_id = $catOuverture->id; // Assignation de la catégorie
             $user1->posts()->save($post);
 
             // Attacher un like du second utilisateur au post

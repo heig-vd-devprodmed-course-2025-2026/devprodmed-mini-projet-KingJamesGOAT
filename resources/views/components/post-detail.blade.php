@@ -23,6 +23,11 @@
                 {{ $post->title }}
             </h1>
         @endif
+
+        <!-- Affichage de la catégorie en texte brut -->
+        <p class="text-md text-gray-500 dark:text-gray-400 font-semibold mb-4">
+            Catégorie : {{ $post->category->name }}
+        </p>
     </header>
 
     <div class="mb-6">

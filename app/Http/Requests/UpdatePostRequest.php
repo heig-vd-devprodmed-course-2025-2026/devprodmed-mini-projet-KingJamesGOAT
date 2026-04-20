@@ -24,6 +24,8 @@ class UpdatePostRequest extends FormRequest
         return [
             'title' => 'nullable|string|max:255',
             'content' => 'required|string|max:1000',
+            // Validation que category_id est requis et existe dans la table categories
+            'category_id' => 'required|exists:categories,id',
         ];
     }
 }

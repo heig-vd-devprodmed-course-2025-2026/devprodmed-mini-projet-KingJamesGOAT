@@ -17,6 +17,21 @@
             </div>
             
             <div class="max-w-lg mx-auto">
+                <select name="category_id" required 
+                    class="w-full rounded-lg border-2 border-gray-200 dark:border-gray-600 bg-gray-50 dark:bg-slate-900 dark:text-white px-6 py-4 text-base text-center focus:border-teal-500 dark:focus:border-purple-500 focus:ring-0 focus:outline-none transition">
+                    <option value="">Sélectionnez une catégorie</option>
+                    @foreach ($categories as $category)
+                        <option value="{{ $category->id }}" {{ old('category_id', $post->category_id) == $category->id ? 'selected' : '' }}>
+                            {{ $category->name }}
+                        </option>
+                    @endforeach
+                </select>
+                @error('category_id')
+                    <p class="text-red-500 text-sm mt-1 mx-1 text-center">{{ $message }}</p>
+                @enderror
+            </div>
+            
+            <div class="max-w-lg mx-auto">
                 <textarea name="content" rows="4" required 
                     class="w-full rounded-lg border-2 border-gray-200 dark:border-gray-600 bg-gray-50 dark:bg-slate-900 dark:text-white px-6 py-4 text-base text-center placeholder-gray-400 dark:placeholder-gray-500 focus:border-teal-500 dark:focus:border-purple-500 focus:ring-0 focus:outline-none transition resize-none">{{ old('content', $post->content) }}</textarea>
                 @error('content')
