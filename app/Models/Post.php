@@ -11,6 +11,7 @@ class Post extends Model
     protected $fillable = [
         'title',
         'content',
+        'fen_string', // Autorise l'assignation de masse pour la chaîne FEN
         'user_id',
         'category_id', // On ajoute category_id pour autoriser sa sauvegarde
     ];

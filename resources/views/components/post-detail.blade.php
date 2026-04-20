@@ -34,6 +34,13 @@
         <p class="text-gray-800 dark:text-gray-200 text-lg leading-relaxed">
             {{ $post->content }}
         </p>
+        
+        <!-- Si une chaîne FEN est présente, on affiche l'image de l'échiquier -->
+        @if ($post->fen_string)
+            <img src="https://backscattering.de/chess/fen_image.php?fen={{ urlencode($post->fen_string) }}" 
+                 alt="Position d'échecs" 
+                 class="mx-auto rounded-lg shadow-sm mt-4 mb-4 max-w-sm w-full">
+        @endif
     </div>
 
     <footer class="pt-6 border-t border-gray-200 dark:border-gray-700">

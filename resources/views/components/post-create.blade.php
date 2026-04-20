@@ -35,6 +35,15 @@
             @enderror
         </div>
         
+        <!-- Nouveau champ optionnel pour la position d'échecs (FEN) -->
+        <div class="max-w-md mx-auto">
+            <input type="text" name="fen_string" value="{{ old('fen_string') }}" placeholder="Optionnel : Code FEN de la position. Ex: rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1" 
+                class="w-full rounded-lg border-2 border-gray-200 dark:border-gray-600 bg-gray-50 dark:bg-slate-900 dark:text-white px-6 py-4 text-base text-center placeholder-gray-400 dark:placeholder-gray-500 focus:border-teal-500 dark:focus:border-purple-500 focus:ring-0 focus:outline-none transition">
+            @error('fen_string')
+                <p class="text-red-500 text-sm mt-1 mx-1 text-center">{{ $message }}</p>
+            @enderror
+        </div>
+        
         <div class="flex justify-center pt-4">
             <button type="submit" 
                 class="px-4 py-2 bg-teal-600 dark:bg-purple-900 text-white rounded-md hover:bg-teal-700 dark:hover:bg-purple-800 transition">

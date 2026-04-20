@@ -39,6 +39,15 @@
                 @enderror
             </div>
             
+            <!-- Champ pour modifier ou ajouter une position d'échecs (FEN) -->
+            <div class="max-w-lg mx-auto">
+                <input type="text" name="fen_string" value="{{ old('fen_string', $post->fen_string) }}" placeholder="Optionnel : Code FEN de la position. Ex: rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1" 
+                    class="w-full rounded-lg border-2 border-gray-200 dark:border-gray-600 bg-gray-50 dark:bg-slate-900 dark:text-white px-6 py-4 text-base text-center placeholder-gray-400 dark:placeholder-gray-500 focus:border-teal-500 dark:focus:border-purple-500 focus:ring-0 focus:outline-none transition">
+                @error('fen_string')
+                    <p class="text-red-500 text-sm mt-1 mx-1 text-center">{{ $message }}</p>
+                @enderror
+            </div>
+            
             <div class="flex items-center justify-center gap-4 pt-4">
                 <a href="{{ route('posts.show', $post->id) }}" class="px-4 py-2 bg-gray-500 text-white rounded-md hover:bg-gray-600 transition">
                     Annuler
