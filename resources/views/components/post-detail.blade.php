@@ -107,4 +107,11 @@
             @endcan
         </div>
     </footer>
+
+    <!-- Lien discret pour accéder à l'API (Mise à disposition) -->
+    <div class="mt-4 text-center">
+        <a href="{{ route('api.posts.show', $post->id) }}" target="_blank" class="text-xs text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 transition underline">
+            Voir les données brutes (API)
+        </a>
+    </div>
 </article>
