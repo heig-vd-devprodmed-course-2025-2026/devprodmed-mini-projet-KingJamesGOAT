@@ -24,6 +24,13 @@
                         @auth
                             <div class="flex items-center gap-8">
                                 <a
+                                    href="{{ route('categories.index') }}"
+                                    class="block hover:text-teal-200 dark:hover:text-purple-300 transition font-bold"
+                                >
+                                    Toutes les Catégories
+                                </a>
+                                
+                                <a
                                     href="{{ route('favorites.index') }}"
                                     class="block hover:text-teal-200 dark:hover:text-purple-300 transition font-bold"
                                 >
