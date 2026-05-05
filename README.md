@@ -42,3 +42,18 @@ Pour developper et tester le projet en local, voici les etapes a suivre:
 
 6. Demarrer le serveur de developpement Laravel:
    composer run dev
+
+## Transparence : Méthodologie IA
+
+### 1. Gain de productivité
+* Génération de la mise en page CSS (Tailwind).
+* Création des textes génériques (Seeders).
+* Rédaction rapide des commentaires dans le code.
+
+### 2. Partenaire de réflexion
+* Questions pour valider ma logique relationnelle.
+* Analyse du code pour identifier des erreurs potentielles avant l'exécution.
+
+J'ai utilisé exclusivement Gemini comme assistant pour ce projet.
+
+> "L'IA est l'évolution de ma méthode de travail. À l'époque du CFC, je cherchais mes solutions ou exemples d'architectures sur Stack Overflow, Reddit ou GitHub. Aujourd'hui, l'IA rassemble ces mêmes connaissances communautaires, mais me permet de trouver la solution beaucoup plus rapidement."
