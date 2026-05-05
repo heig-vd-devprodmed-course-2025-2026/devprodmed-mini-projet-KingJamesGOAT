@@ -15,16 +15,16 @@ class PostController
 {
     public function index(Request $request): View
     {
-        // On inclut la relation 'category' pour éviter le problème N+1
+        // On inclut les relations pour éviter le problème N+1
         $query = Post::orderBy('created_at', 'desc')->with(['user', 'likes', 'category']);
 
-        // Filtrage des publications si un category_id est présent dans l'URL (?category_id=x)
-        if ($request->has('category_id')) {
-            $query->where('category_id', $request->query('category_id'));
+        // S'il y a une recherche par catégorie dans l'URL (?category_id=...)
+        if ($request->has('category_id') && $request->category_id != '') {
+            $query->where('category_id', $request->category_id);
         }
 
         $posts = $query->get();
-        // On charge les catégories pour les passer à la vue (utiles pour le formulaire de création)
+        // On charge les catégories pour les passer à la vue (utiles pour le formulaire de création et le filtre)
         $categories = Category::all();
 
         return view('posts.index', ['posts' => $posts, 'categories' => $categories]);

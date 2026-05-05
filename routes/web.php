@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Route;
 
 // Auth
@@ -30,6 +31,9 @@ Route::delete('/posts/{post}/favorites', [\App\Http\Controllers\FavoriteControll
 
 // Users
 Route::resource('users', UserController::class)->only(['show'])->parameters(['users' => 'user']);
+
+// Categories
+Route::get('/categories', [CategoryController::class, 'index'])->name('categories.index');
 
 // About
 Route::view('/about', 'about')->name('about');
